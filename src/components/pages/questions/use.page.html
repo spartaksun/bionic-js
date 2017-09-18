@@ -1,0 +1,13 @@
+<p>Question ID: {{ question.id }}</p>
+
+<h2>{{ question.title }}</h2>
+
+{{#each question.answers}}
+<div>
+    <label>
+        <input type="checkbox" name="correct"/>
+        {{ title }}
+    </label>
+</div>
+{{/each}}
+

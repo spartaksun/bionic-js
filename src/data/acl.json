@@ -1,0 +1,34 @@
+[
+  {
+  "route": "#/",
+  "access": "all"
+  },
+  {
+    "route": "#/admin",
+    "access": ["admin"]
+  },
+  {
+    "route": "#/about",
+    "access": ["admin", "user"]
+  },
+  {
+    "route": "#/question",
+    "access": "all"
+  },
+  {
+    "route": "#/login",
+    "access": ["unauthorized"]
+  },
+  {
+    "route": "#/admin/questions",
+    "access": ["admin"]
+  },
+  {
+    "route": "#/admin/questions/add",
+    "access": ["admin"]
+  },
+  {
+    "route": "#/logout",
+    "access": ["admin", "user"]
+  }
+]

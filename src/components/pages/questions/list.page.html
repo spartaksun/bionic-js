@@ -1,0 +1,20 @@
+<h1>Questions</h1>
+
+<ul class="questions-list">
+    {{#each questions}}
+    <li>{{ title }} [{{ id }}]</li>
+    <ol type="a">
+
+        {{#each answers}}
+        <li>
+            {{ title }}
+            {{#if correct}}
+                <span class="correct">&#10004;</span>
+            {{/if}}
+        </li>
+        {{/each}}
+
+    </ol>
+    {{/each}}
+
+</ul>

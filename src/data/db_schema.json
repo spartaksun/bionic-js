@@ -1,0 +1,14 @@
+{
+  "users": {
+    "primary": "id",
+    "fields": {
+      "username": {"unique": true}
+    }
+  },
+  "questions": {
+    "primary": "id",
+    "fields": {
+      "answers": {}
+    }
+  }
+}
