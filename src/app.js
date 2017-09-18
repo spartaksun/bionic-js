@@ -1,7 +1,8 @@
 'use strict';
 
 import router from 'services/router';
-import UserLoader from 'services/user/loader';
+import userLoader from 'services/user/loader';
+import questionLoader from 'services/question/loader';
 
 import Menu from 'components/menu/menu';
 import UserPanel from 'components/userPanel/userPanel';
@@ -10,7 +11,7 @@ class App {
 
     init = () => {
 
-        const userLoader = new UserLoader;
+        questionLoader.init();
         userLoader.init();
 
         const userPanel = new UserPanel;
@@ -21,7 +22,7 @@ class App {
 
         router.handleChangeRoute = function () {
             userPanel.init();
-            menu.init();
+            menu.reRender();
         };
         router.init();
     };

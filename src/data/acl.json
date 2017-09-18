@@ -9,11 +9,11 @@
   },
   {
     "route": "#/about",
-    "access": ["admin", "user"]
+    "access": ["unauthorized", "user"]
   },
   {
     "route": "#/question",
-    "access": "all"
+    "access": ["unauthorized", "user"]
   },
   {
     "route": "#/login",

@@ -5,7 +5,7 @@ import passwordHash from 'password-hash';
 import db from 'services/db';
 import defaultUserList from 'data/users.json';
 
-class Loader {
+class UserLoader {
 
     init() {
         const users = db.findAll('users');
@@ -31,4 +31,4 @@ class Loader {
     }
 }
 
-export default Loader;
+export default new UserLoader();

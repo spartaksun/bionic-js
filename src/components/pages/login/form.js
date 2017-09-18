@@ -1,6 +1,6 @@
 'use strict';
 
-import router from 'services/router/router';
+import router from 'services/router';
 import auth from 'services/auth'
 
 class LoginForm {

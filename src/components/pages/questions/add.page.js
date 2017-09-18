@@ -13,6 +13,9 @@ class AddQuestionPage extends Page {
         super(url);
 
         this.content = template;
+        this.data = {
+            questions: [1,2,3,4,]
+        }
     }
 
     afterRender() {
@@ -31,7 +34,7 @@ class AddQuestionPage extends Page {
                     const answer = answers[i];
                     const title = answer.value.toString();
 
-                    if (title.length >= MIN_LENGTH) {
+                    if (title.length > 0) {
                         resultAnswers.push({
                             title,
                             correct: correct[i].checked

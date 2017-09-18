@@ -4,11 +4,11 @@ import auth from 'services/auth';
 
 class UserPanel {
 
-    init = () => {
+    init() {
         const user = auth.getUser();
 
-        if(user && user.fullName) {
-            this.username = user.fullName;
+        if(user && user.username) {
+            this.username = user.username;
         } else {
             this.username = 'Guest';
         }

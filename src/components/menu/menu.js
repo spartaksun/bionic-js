@@ -1,81 +1,58 @@
 'use strict';
 
 import _ from 'lodash';
+import Handlebars from 'handlebars';
 
 import router from 'services/router';
 import auth from 'services/auth';
+import template from './menu.html';
+import config from './config';
 
 class Menu {
-    constructor() {
-
-        this.items = [
-            {
-                title: 'Home',
-                route: '#/',
-            },
-            {
-                title: 'quiz',
-                route: '#/question',
-            },
-            {
-                title: 'About',
-                route: '#/about',
-            },
-            {
-                title: 'Admin',
-                route: '#/admin',
-            },
-            {
-                title: 'Questions',
-                route: '#/admin/questions',
-            },
-            {
-                title: 'Add question',
-                route: '#/admin/questions/add',
-            },
-            {
-                title: 'Login',
-                route: '#/login',
-            },
-            {
-                title: 'Logout',
-                route: '#/logout',
-            }
-        ];
-    }
 
     init = () => {
-        const _this = this;
-        document.getElementById('menu').innerHTML = '';
-
-        _.each(this.items, ({ title, route }) => {
-            _this.addMenuLink(title, route);
-        });
+        this.calculateItems();
+        this.render();
+        this.initHandlers()
     };
 
-    addMenuLink = (title, route) => {
-        if(auth.isAccessGranted(route)) {
-            const li = document.createElement('li');
-            const link = this.createLinkElement(title, route);
+    calculateItems() {
+        const menuItems = [];
 
-            li.appendChild(link);
-            document.getElementById('menu').appendChild(li);
-        }
-    };
-
-    createLinkElement = (title, url) => {
-        const link = document.createElement('a');
-
-        link.textContent = title;
-        link.setAttribute('href', url);
-
-        const self = this;
-        link.addEventListener('click', function(e) {
-            router.renderPage(url);
+        _.each(config, ({title, route}) => {
+            if (auth.isAccessGranted(route)) {
+                menuItems.push({
+                    url: route,
+                    label: title
+                });
+            }
         });
 
-        return link;
-    };
+        this.menuItems = menuItems;
+    }
+
+    reRender() {
+        this.calculateItems();
+        this.render();
+    }
+
+    render() {
+        const html = Handlebars.compile(template)({
+            menuItems: this.menuItems
+        });
+        document.getElementById('menu').innerHTML = html;
+    }
+
+    initHandlers() {
+        document.getElementById('menu')
+            .addEventListener('click', (e) => {
+                const {target} = e;
+
+                if (target.nodeName === 'A') {
+                    router.renderPage(target.hash)
+                }
+            });
+    }
 }
 
 export default Menu;

@@ -60,7 +60,7 @@ class Router {
 
         if (url === '#/logout') {
             auth.logout();
-            return this.goHome();
+            return this.goToUrl('#/login');
         }
 
         let page = find(pages, {url});

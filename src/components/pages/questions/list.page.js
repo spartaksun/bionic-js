@@ -10,8 +10,9 @@ class QuestionListPage extends Page {
         super(url);
 
         this.content = pageContent;
-        const questions = db.findAll('questions');
-
+        const questions = db.findAll('questions').sort((q1, q2) => {
+                return parseInt(q1.createdAt) < parseInt(q2.createdAt)
+            });
         this.data = {
             questions
         }

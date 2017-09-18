@@ -1,0 +1,36 @@
+[
+  {
+    "title": "India has largest deposits of ____ in the world.",
+    "answers": [
+      {
+        "title": "gold",
+        "correct": true
+      },
+      {
+        "title": "copper",
+        "correct": false
+      },
+      {
+        "title": "mika",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "title": "ICAO stands for",
+    "answers": [
+      {
+        "title": "International Civil Aviation Organization",
+        "correct": true
+      },
+      {
+        "title": "Indian Corporation of Agriculture Organization",
+        "correct": false
+      },
+      {
+        "title": "Institute of Company of Accounts Organization",
+        "correct": false
+      }
+    ]
+  }
+]

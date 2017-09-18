@@ -1,5 +1,7 @@
 'use strict';
 
+import moment from 'moment';
+
 class Database {
 
     /**
@@ -64,6 +66,7 @@ class Database {
 
         // Set primary key
         object[this.getPrimaryKey(collectionName)] = this.generateKey();
+        object.createdAt = moment().format('X');
 
         // Add object to collection
         this.tempStorage[collectionName].push(object);
