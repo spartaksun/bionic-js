@@ -1,17 +1,17 @@
 class Message {
-    init() {
-        this.errorSelector = 'error';
-        this.messageSelector = 'message';
-    }
 
     error(text) {
-
+        this.message(text, 'alert-danger')
     }
 
-    message(text) {
+    info(text) {
+        this.message(text, 'alert-primary')
+    }
+
+    message(text, className) {
         const block = document.createElement('div');
 
-        block.setAttribute('class', 'alert alert-danger');
+        block.setAttribute('class', 'alert ' + className);
         block.setAttribute('role', 'alert');
         block.textContent = text;
 

@@ -13,7 +13,7 @@ class OneQuestionPage extends Page {
         const quiz = this.getCurrentQuiz();
         const quizQuestion = quiz.questions[id];
         if (quizQuestion.submit) {
-            throw new Error('Question already answered');
+            throw new Error('Question is already answered');
         }
 
         const question = db.find('questions', quizQuestion['qid']);

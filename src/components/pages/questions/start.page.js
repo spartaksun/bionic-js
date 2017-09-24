@@ -40,7 +40,7 @@ class StartQuizPage extends Page {
                 // go to first question in quiz
                 router.goToUrl(router.generateUrl('#/question', {id: 1}));
             } catch (e) {
-                message.message(e.message);
+                message.error(e.message);
             }
         });
     }
