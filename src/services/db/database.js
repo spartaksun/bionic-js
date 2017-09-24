@@ -74,6 +74,28 @@ class Database {
         return object;
     }
 
+    update(collectionName, object) {
+        if (typeof object !== 'object') {
+            throw new Error('DB element has to be an object.');
+        }
+
+        this.validateCollection(collectionName);
+
+        const primaryKeyName = this.getPrimaryKey(collectionName);
+        const found = this.findOneBy(collectionName, {
+            [primaryKeyName]: object[primaryKeyName]
+        });
+
+        const index = this.tempStorage[collectionName].indexOf(found);
+        if (index === -1) {
+            throw new Error('Object not found')
+        }
+
+        object.updatedAt = moment().format('X');
+
+        this.tempStorage[collectionName][index] = object;
+    }
+
     validateUnique(collectionName, object) {
         const { fields } = this.schema[collectionName];
         if(!fields || typeof fields !== 'object') {

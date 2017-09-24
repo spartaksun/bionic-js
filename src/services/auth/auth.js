@@ -77,7 +77,6 @@ class Auth {
     };
 
     isAccessGranted = (fullUrl) => {
-
         const { url } = router.parseUrl(fullUrl);
 
         for(let i = 0; i < accessList.length; i++) {

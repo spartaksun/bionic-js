@@ -10,5 +10,14 @@
     "fields": {
       "answers": {}
     }
+  },
+  "quizzes": {
+    "primary": "id",
+    "fields": {
+      "email": {
+        "unique": true
+      },
+      "questions": {}
+    }
   }
 }

@@ -1,0 +1,29 @@
+<p>Student {{ studentEmail }}</p>
+<p>Question ID: {{ question.id }}</p>
+
+<h2>{{ question.title }}</h2>
+
+<form id="questionForm">
+
+    {{#each question.answers}}
+        <div>
+            <div class="checkbox">
+                <label>
+                    <input
+                            type="checkbox"
+                            name="correct"
+                        {{#if checked }} checked {{/if}}
+                    >
+                    {{#if ../saved }}
+                        {{#if correct}}
+                            <span class="correct">&#10004;</span>
+                        {{/if}}
+                    {{/if}}
+                    {{ title }}
+                </label>
+            </div>
+        </div>
+    {{/each }}
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

@@ -8,7 +8,8 @@ import loginPage from 'components/pages/login/login.page';
 import adminPage from 'components/pages/admin/admin.page';
 import questionListPage from 'components/pages/questions/list.page';
 import addQuestionPage from 'components/pages/questions/add.page';
-import useQuestionPage from 'components/pages/questions/use.page';
+import startQuizPage from 'components/pages/questions/start.page';
+import oneQuestionPage from 'components/pages/questions/one.page';
 
 import auth from 'services/auth';
 
@@ -19,7 +20,8 @@ const pages = [
     adminPage,
     questionListPage,
     addQuestionPage,
-    useQuestionPage,
+    startQuizPage,
+    oneQuestionPage,
 ];
 
 class Router {
@@ -46,6 +48,18 @@ class Router {
 
                     return previous;
                 }, {});
+        }
+
+        return result;
+    }
+
+    generateUrl(baseUrl, params) {
+        let result = baseUrl;
+        if (params) {
+            result += '?';
+            for (let key in params) {
+                result += `${key}=${params[key]}`
+            }
         }
 
         return result;
@@ -83,7 +97,7 @@ class Router {
     }
 
     goHome() {
-        this.goToUrl('#/');
+        this.goToUrl('/');
     }
 }
 

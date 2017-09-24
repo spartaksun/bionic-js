@@ -10,7 +10,7 @@ class UserPanel {
         if(user && user.username) {
             this.username = user.username;
         } else {
-            this.username = 'Guest';
+            this.username = '';
         }
 
         this.render();

@@ -3,6 +3,7 @@
 import Handlebars from 'handlebars';
 
 class Page {
+
 	constructor(url = '', content = '') {
 		this.url = url;
 		this.content = content;
@@ -15,14 +16,15 @@ class Page {
 	}
 
 	render() {
-
 		this.beforeRender();
-
-        document.querySelector('#page').innerHTML
-			= Handlebars.compile(this.content)(this.data);
-
+        this.doRender();
         this.afterRender();
-	};
+    };
+
+    doRender() {
+        document.querySelector('#page').innerHTML
+            = Handlebars.compile(this.content)(this.data);
+    }
 
 	beforeRender() {};
 	afterRender() {};

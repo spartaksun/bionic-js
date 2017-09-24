@@ -1,34 +1,58 @@
 [
   {
-  "route": "#/",
-  "access": "all"
+    "route": "#/",
+    "access": "all"
   },
   {
     "route": "#/admin",
-    "access": ["admin"]
+    "access": [
+      "admin"
+    ]
   },
   {
     "route": "#/about",
-    "access": ["unauthorized", "user"]
+    "access": [
+      "unauthorized",
+      "user"
+    ]
+  },
+  {
+    "route": "#/start",
+    "access": [
+      "unauthorized",
+      "user"
+    ]
   },
   {
     "route": "#/question",
-    "access": ["unauthorized", "user"]
+    "access": [
+      "unauthorized",
+      "user"
+    ]
   },
   {
     "route": "#/login",
-    "access": ["unauthorized"]
+    "access": [
+      "unauthorized"
+    ]
   },
   {
     "route": "#/admin/questions",
-    "access": ["admin"]
+    "access": [
+      "admin"
+    ]
   },
   {
     "route": "#/admin/questions/add",
-    "access": ["admin"]
+    "access": [
+      "admin"
+    ]
   },
   {
     "route": "#/logout",
-    "access": ["admin", "user"]
+    "access": [
+      "admin",
+      "user"
+    ]
   }
 ]
