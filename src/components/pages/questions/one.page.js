@@ -1,6 +1,8 @@
 'use strict';
 
 import db from 'services/db';
+import router from 'services/router';
+import message from 'services/message';
 
 import Page from '../page';
 import template from './one.page.html';
@@ -11,18 +13,13 @@ class OneQuestionPage extends Page {
         const {id} = this.papameters;
 
         const quiz = this.getCurrentQuiz();
-        const quizQuestion = quiz.questions[id];
-
-        if (quizQuestion.submit) {
-            throw new Error('Question is already answered');
-        }
-
-        const question = db.find('questions', quizQuestion['qid']);
+        const question = db.find('questions', quiz.questions[id]['qid']);
         const total = Object.keys(quiz.questions).length;
 
         this.checked = {};
         this.question = question;
         this.content = template;
+        this.quizQuestion = quiz.questions[id];
         this.data = {
             id,
             total,
@@ -45,6 +42,8 @@ class OneQuestionPage extends Page {
 
         db.update('quizzes', quiz);
         db.persist('quizzes');
+
+        return true;
     }
 
     getCurrentQuiz() {
@@ -55,6 +54,10 @@ class OneQuestionPage extends Page {
         }
 
         return quiz;
+    }
+
+    goNext() {
+
     }
 
     afterRender() {
@@ -69,24 +72,28 @@ class OneQuestionPage extends Page {
 
                 const {correct} = e.target;
                 const {answers} = self.question;
-                const {id} = this.papameters;
+                const {id} = self.papameters;
 
+                if (!self.quizQuestion.submit) {
+                    for (let i = 0; i < answers.length; i++) {
+                        const checked = correct[i].checked;
 
-                for (let i = 0; i < answers.length; i++) {
-                    const checked = correct[i].checked;
+                        self.data.question.answers[i].checked = checked;
+                        self.correct = self.correct
+                            && answers[i].correct === checked;
+                    }
 
-                    self.data.question.answers[i].checked = checked;
-                    self.correct = self.correct
-                        && answers[i].correct === checked;
+                    if (this.updateQuizQuestion(id, self.correct)) {
+                        self.data.saved = true;
+                    }
+
+                    self.doRender();
+                } else {
+                    message.error('Question has been already submitted!');
                 }
 
-                if (this.updateQuizQuestion(id, self.correct)) {
-                    self.data.saved = true;
-                }
-
-                // TODO Redirect to next page
-
-                self.doRender();
+                const nextId = +id + 1; // TODO calculate next Id
+                router.goToUrl(router.generateUrl('#/question', {id: nextId}));
             });
     }
 

@@ -1,5 +1,7 @@
 'use strict';
 
+import validator from 'validator';
+
 import router from 'services/router';
 import db from 'services/db';
 import message from 'services/message';
@@ -17,6 +19,11 @@ class StartQuizPage extends Page {
         document.getElementById('startButton').addEventListener('click', (event) => {
             event.preventDefault();
 
+            const email = document.getElementById('email').value.trim();
+            if(!validator.isEmail(email)) {
+                return message.error('Invalid email');
+            }
+
             const questions = {};
             const qts = db.findAll('questions');
             for (let i = 0; i < qts.length; i++) {
@@ -31,7 +38,7 @@ class StartQuizPage extends Page {
                 const quiz = db.add('quizzes', {
                     lastId: 0,
                     questions,
-                    email: document.getElementById('email').value,
+                    email,
                 });
 
                 db.persist();

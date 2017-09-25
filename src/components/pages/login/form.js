@@ -1,5 +1,6 @@
 'use strict';
 
+import message from 'services/message';
 import router from 'services/router';
 import auth from 'services/auth'
 
@@ -26,7 +27,7 @@ class LoginForm {
             if (user) {
                 router.goHome();
             } else {
-                this.setMessage('Invalid username or password!', 'red');
+                message.error('Invalid username or password!', 'red');
             }
         });
     }

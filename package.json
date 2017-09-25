@@ -20,6 +20,7 @@
     "jshint": "2.9.5",
     "jshint-loader": "0.8.4",
     "password-hash": "^1.2.2",
+    "validator": "^8.2.0",
     "webpack": "3.4.1"
   },
   "dependencies": {
