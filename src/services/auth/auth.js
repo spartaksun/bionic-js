@@ -66,7 +66,7 @@ class Auth {
         return JSON.parse(userData);
     }
 
-    getRole = () => {
+    getRole() {
         const user = this.getUser();
 
         if (!user) {
@@ -76,12 +76,12 @@ class Auth {
         return user.role;
     };
 
-    isAccessGranted = (fullUrl) => {
+    isAccessGranted(fullUrl) {
         const {url} = router.parseUrl(fullUrl);
 
         for (let i = 0; i < accessList.length; i++) {
             const {access, route} = accessList[i];
-            const preparedUrl = url === '/' ? '' : url;
+            const preparedUrl = url === '#/' ? '' : url;
 
             if (route === preparedUrl) {
                 if (access === 'all') {

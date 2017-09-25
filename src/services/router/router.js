@@ -97,7 +97,7 @@ class Router {
     }
 
     goHome() {
-        this.goToUrl('/');
+        this.goToUrl('#/');
     }
 }
 
