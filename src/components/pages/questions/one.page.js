@@ -58,20 +58,16 @@ class OneQuestionPage extends Page {
     }
 
     getNextUrl() {
-        let url;
-
         const {id} = this.papameters;
         const quiz = this.getCurrentQuiz();
 
         const nextId = +id + 1;
-        if(quiz.questions[nextId]) {
-            url = router.generateUrl('#/question', {id: nextId});
+        if (quiz.questions[nextId]) {
+            return router.generateUrl('#/question', {id: nextId});
         } else {
             message.info('You have been successfully finished a quiz!');
-            url = router.generateUrl('#/');
+            return router.generateUrl('#/');
         }
-
-        return url;
     }
 
     afterRender() {
