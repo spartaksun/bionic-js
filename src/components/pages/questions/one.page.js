@@ -20,6 +20,7 @@ class OneQuestionPage extends Page {
         this.question = question;
         this.content = template;
         this.quizQuestion = quiz.questions[id];
+
         this.data = {
             id,
             total,
@@ -56,8 +57,21 @@ class OneQuestionPage extends Page {
         return quiz;
     }
 
-    goNext() {
+    getNextUrl() {
+        let url;
 
+        const {id} = this.papameters;
+        const quiz = this.getCurrentQuiz();
+
+        const nextId = +id + 1;
+        if(quiz.questions[nextId]) {
+            url = router.generateUrl('#/question', {id: nextId});
+        } else {
+            message.info('You have been successfully finished a quiz!');
+            url = router.generateUrl('#/');
+        }
+
+        return url;
     }
 
     afterRender() {
@@ -65,7 +79,6 @@ class OneQuestionPage extends Page {
         let self = this;
 
         self.correct = true;
-
         document.getElementById('questionForm')
             .addEventListener('submit', (e) => {
                 e.preventDefault();
@@ -92,8 +105,7 @@ class OneQuestionPage extends Page {
                     message.error('Question has been already submitted!');
                 }
 
-                const nextId = +id + 1; // TODO calculate next Id
-                router.goToUrl(router.generateUrl('#/question', {id: nextId}));
+                router.goToUrl(self.getNextUrl());
             });
     }
 

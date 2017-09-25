@@ -81,9 +81,8 @@ class Auth {
 
         for (let i = 0; i < accessList.length; i++) {
             const {access, route} = accessList[i];
-            const preparedUrl = url === '#/' ? '' : url;
 
-            if (route === preparedUrl) {
+            if (route === url) {
                 if (access === 'all') {
                     return true;
                 }
