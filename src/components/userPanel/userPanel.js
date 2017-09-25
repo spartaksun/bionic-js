@@ -7,7 +7,7 @@ class UserPanel {
     init() {
         const user = auth.getUser();
 
-        if(user && user.username) {
+        if (user && user.username) {
             this.username = user.username;
         } else {
             this.username = '';

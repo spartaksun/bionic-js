@@ -11,23 +11,23 @@
 
     {{#each questions }}
 
-    <div class="row">
-        <div class="col-md-6 mb-3">
-            <input
-                    name="answers"
-                    type="text"
-                    class="form-control form-control-sm"
-                    placeholder="Type an answer"
-            >
-        </div>
-        <div class="col-md6 mb1" >
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="correct"> correct
-                </label>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <input
+                        name="answers"
+                        type="text"
+                        class="form-control form-control-sm"
+                        placeholder="Type an answer"
+                >
+            </div>
+            <div class="col-md6 mb1">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="correct"> correct
+                    </label>
+                </div>
             </div>
         </div>
-    </div>
 
     {{/each }}
 

@@ -14,7 +14,7 @@ class AddQuestionPage extends Page {
 
         this.content = template;
         this.data = {
-            questions: [1,2,3,4,]
+            questions: [1, 2, 3, 4,]
         }
     }
 
@@ -42,7 +42,7 @@ class AddQuestionPage extends Page {
                     }
                 }
 
-                if(resultAnswers.length > 0) {
+                if (resultAnswers.length > 0) {
                     db.add('questions', {
                         title: question.value,
                         answers: resultAnswers

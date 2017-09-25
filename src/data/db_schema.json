@@ -2,7 +2,9 @@
   "users": {
     "primary": "id",
     "fields": {
-      "username": {"unique": true}
+      "username": {
+        "unique": true
+      }
     }
   },
   "questions": {

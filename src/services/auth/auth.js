@@ -11,11 +11,11 @@ const USER_STORAGE_KEY = 'user_key';
 
 class Auth {
 
-    constructor (storage) {
+    constructor(storage) {
         this.tempStorage = storage;
     }
 
-    getUserList = () => {
+    getUserList() {
         return db.findAll('users');
     };
 
@@ -23,13 +23,13 @@ class Auth {
         return passwordHash.generate(password);
     }
 
-    findUser (username, password) {
+    findUser(username, password) {
         const user = db.findOneBy('users', {
             username,
         });
 
-        if(user) {
-            if(passwordHash.verify(password, user.password)) {
+        if (user) {
+            if (passwordHash.verify(password, user.password)) {
                 return user;
             }
         }
@@ -37,13 +37,13 @@ class Auth {
         return null;
     }
 
-    login (username, password) {
+    login(username, password) {
         const user = db.findOneBy('users', {
             username,
         });
 
-        if(user) {
-            if(passwordHash.verify(password, user.password)) {
+        if (user) {
+            if (passwordHash.verify(password, user.password)) {
                 this.tempStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user));
 
                 return user;
@@ -53,13 +53,13 @@ class Auth {
         return false;
     }
 
-    logout () {
+    logout() {
         this.tempStorage.removeItem(USER_STORAGE_KEY);
     }
 
     getUser() {
         const userData = this.tempStorage.getItem(USER_STORAGE_KEY);
-        if(!userData) {
+        if (!userData) {
             return;
         }
 
@@ -69,7 +69,7 @@ class Auth {
     getRole = () => {
         const user = this.getUser();
 
-        if(!user) {
+        if (!user) {
             return 'unauthorized';
         }
 
@@ -77,18 +77,18 @@ class Auth {
     };
 
     isAccessGranted = (fullUrl) => {
-        const { url } = router.parseUrl(fullUrl);
+        const {url} = router.parseUrl(fullUrl);
 
-        for(let i = 0; i < accessList.length; i++) {
-            const { access, route } = accessList[i];
+        for (let i = 0; i < accessList.length; i++) {
+            const {access, route} = accessList[i];
             const preparedUrl = url === '/' ? '' : url;
 
-            if(route === preparedUrl) {
-                if(access === 'all') {
+            if (route === preparedUrl) {
+                if (access === 'all') {
                     return true;
                 }
 
-                if(access.indexOf(this.getRole()) !== -1) {
+                if (access.indexOf(this.getRole()) !== -1) {
                     return true
                 }
             }

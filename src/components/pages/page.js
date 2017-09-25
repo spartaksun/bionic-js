@@ -4,19 +4,19 @@ import Handlebars from 'handlebars';
 
 class Page {
 
-	constructor(url = '', content = '') {
-		this.url = url;
-		this.content = content;
-		this.data = {};
-		this.papameters = {};
-	}
+    constructor(url = '', content = '') {
+        this.url = url;
+        this.content = content;
+        this.data = {};
+        this.papameters = {};
+    }
 
-	setParameters(papameters) {
+    setParameters(papameters) {
         this.papameters = papameters;
-	}
+    }
 
-	render() {
-		this.beforeRender();
+    render() {
+        this.beforeRender();
         this.doRender();
         this.afterRender();
     };
@@ -26,8 +26,11 @@ class Page {
             = Handlebars.compile(this.content)(this.data);
     }
 
-	beforeRender() {};
-	afterRender() {};
+    beforeRender() {
+    };
+
+    afterRender() {
+    };
 }
 
 export default Page;

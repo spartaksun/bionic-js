@@ -2,19 +2,19 @@
 
 <ul class="questions-list">
     {{#each questions}}
-    <li title="{{ id }}">{{ title }}</li>
-    <ol type="a">
+        <li title="{{ id }}">{{ title }}</li>
+        <ol type="a">
 
-        {{#each answers}}
-        <li>
-            {{ title }}
-            {{#if correct}}
-                <span class="correct">&#10004;</span>
-            {{/if}}
-        </li>
-        {{/each}}
+            {{#each answers}}
+                <li>
+                    {{ title }}
+                    {{#if correct}}
+                        <span class="correct">&#10004;</span>
+                    {{/if}}
+                </li>
+            {{/each}}
 
-    </ol>
+        </ol>
     {{/each}}
 
 </ul>

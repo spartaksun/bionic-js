@@ -8,7 +8,7 @@ class QuestionLoader {
     init() {
         const users = db.findAll('questions');
 
-        if(users.length === 0) {
+        if (users.length === 0) {
             this.loadDefaultQestions();
         }
     }

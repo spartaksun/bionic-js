@@ -70,7 +70,7 @@ class Router {
             return this.goHome();
         }
 
-        const { url, params } = this.parseUrl(fullUrl);
+        const {url, params} = this.parseUrl(fullUrl);
 
         if (url === '#/logout') {
             auth.logout();

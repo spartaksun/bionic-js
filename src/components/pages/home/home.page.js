@@ -5,11 +5,12 @@ import homePageContent from './home.page.html';
 
 
 class HomePage extends Page {
-	constructor(url){
-		super(url);
 
-		this.content = homePageContent;
-	}
+    constructor(url) {
+        super(url);
+
+        this.content = homePageContent;
+    }
 }
 
 let homePage = new HomePage('#/');

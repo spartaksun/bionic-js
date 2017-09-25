@@ -14,7 +14,7 @@ class Database {
         this.tempStorage = {};
 
         for (let name in this.schema) {
-            if(!this.schema.hasOwnProperty(name)) {
+            if (!this.schema.hasOwnProperty(name)) {
                 continue;
             }
 
@@ -32,7 +32,7 @@ class Database {
      */
     loadCollection(name) {
         this.validateCollection(name);
-        const collectionString =  this.storage.getItem(name);
+        const collectionString = this.storage.getItem(name);
 
         return collectionString
             ? JSON.parse(collectionString)
@@ -57,7 +57,7 @@ class Database {
      */
     add(collectionName, object) {
 
-        if(typeof object !== 'object') {
+        if (typeof object !== 'object') {
             throw new Error('DB element has to be an object.');
         }
 
@@ -97,19 +97,22 @@ class Database {
     }
 
     validateUnique(collectionName, object) {
-        const { fields } = this.schema[collectionName];
-        if(!fields || typeof fields !== 'object') {
+        const {fields} = this.schema[collectionName];
+        if (!fields || typeof fields !== 'object') {
             return;
         }
 
         for (let fieldName in object) {
-            if(fields[fieldName] && fields[fieldName].unique === true) {
+            if (!object.hasOwnProperty(fieldName)) {
+                continue;
+            }
+            if (fields[fieldName] && fields[fieldName].unique === true) {
                 const value = object[fieldName];
                 const foundQbects = this.findAllBy(collectionName, {
                     [fieldName]: value
                 });
 
-                if(foundQbects.length > 0) {
+                if (foundQbects.length > 0) {
                     throw new Error(`Collection "${collectionName}": field "${fieldName}" with value "${value}" has to be unique.`);
                 }
             }
@@ -125,7 +128,7 @@ class Database {
         const collection = this.tempStorage[collectionName];
         const index = collection.indexOf(object);
 
-        if(index === -1) {
+        if (index === -1) {
             throw new Error('Object not found.');
         }
 
@@ -159,7 +162,7 @@ class Database {
     findOneBy(collectionName, criteria) {
         const found = this.findAllBy(collectionName, criteria, true);
 
-        if(found.length === 1) {
+        if (found.length === 1) {
             return found[0];
         }
     }
@@ -174,25 +177,27 @@ class Database {
     findAllBy(collectionName, criteria, stopOnFirst = false) {
         this.validateCollection(collectionName);
 
-        if(typeof criteria === 'undefined') {
+        if (typeof criteria === 'undefined') {
             return this.tempStorage[collectionName];
         }
 
-        if(typeof criteria === 'object') {
+        if (typeof criteria === 'object') {
             const result = [];
             const collection = this.tempStorage[collectionName];
 
-            for (let i = 0; i < collection.length; i ++) {
+            for (let i = 0; i < collection.length; i++) {
                 const object = collection[i];
 
                 let match = true;
                 for (let key in criteria) {
-                    match = match && object[key] === criteria[key]
+                    if (criteria.hasOwnProperty(key)) {
+                        match = match && object[key] === criteria[key]
+                    }
                 }
 
-                if(match) {
-                    result.push( object);
-                    if(stopOnFirst) {
+                if (match) {
+                    result.push(object);
+                    if (stopOnFirst) {
                         return result;
                     }
                 }
@@ -230,12 +235,12 @@ class Database {
     }
 
     persist(collectionName) {
-        if(collectionName) {
+        if (collectionName) {
             this.validateCollection(collectionName);
             this.persistCollection(collectionName, this.tempStorage[collectionName]);
         } else {
             for (let name in this.tempStorage) {
-                if(this.tempStorage.hasOwnProperty(name)) {
+                if (this.tempStorage.hasOwnProperty(name)) {
                     this.persistCollection(name, this.tempStorage[name]);
                 }
             }
@@ -247,7 +252,7 @@ class Database {
      * @param name
      */
     validateCollection(name) {
-        if(!this.schema[name]) {
+        if (!this.schema[name]) {
             throw new Error(`Collection name "${name}" is invalid.`);
         }
     }

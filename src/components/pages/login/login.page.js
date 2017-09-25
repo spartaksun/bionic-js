@@ -5,7 +5,8 @@ import pageContent from './login.page.html';
 import LoginForm from './form';
 
 class LoginPage extends Page {
-    constructor(url){
+
+    constructor(url) {
         super(url);
         this.content = pageContent;
     }

@@ -10,12 +10,12 @@ class LoginForm {
         this.loginMessage = document.getElementById('loginMessage');
     }
 
-    setMessage (message, color = '#000') {
+    setMessage(message, color = '#000') {
         this.loginMessage.textContent = message;
         this.loginMessage.style.color = color;
     }
 
-    initSubmitButton () {
+    initSubmitButton() {
         this.submitButton.addEventListener('click', (event) => {
             event.preventDefault();
 
@@ -23,7 +23,7 @@ class LoginForm {
             const password = document.getElementById('password').value;
             const user = auth.login(login, password);
 
-            if(user) {
+            if (user) {
                 router.goHome();
             } else {
                 this.setMessage('Invalid username or password!', 'red');
@@ -31,7 +31,7 @@ class LoginForm {
         });
     }
 
-    init () {
+    init() {
         this.setMessage('Please fill login and passowrd');
         this.initSubmitButton();
     }

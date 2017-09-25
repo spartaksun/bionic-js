@@ -10,14 +10,14 @@ class UserLoader {
     init() {
         const users = db.findAll('users');
 
-        if(users.length === 0) {
+        if (users.length === 0) {
             this.loadDefaultUsers();
         }
     }
 
     loadDefaultUsers() {
         defaultUserList.forEach(userData => {
-            const { username, password, fullName, role } = userData;
+            const {username, password, fullName, role} = userData;
 
             db.add('users', {
                 username,
