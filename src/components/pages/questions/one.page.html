@@ -1,29 +1,40 @@
-<p>Student {{ studentEmail }}</p>
-<p>Question ID: {{ question.id }}</p>
 
-<h2>{{ question.title }}</h2>
+<ol class="breadcrumb">
+    <li class="breadcrumb-item active">Email: {{ studentEmail }}</li>
+</ol>
 
-<form id="questionForm">
+<div class="card">
+    <div class="card-header">
+        Question: {{ id }} of {{ total }}
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">{{ question.title }}</h4>
 
-    {{#each question.answers}}
-        <div>
-            <div class="checkbox">
-                <label>
-                    <input
-                            type="checkbox"
-                            name="correct"
-                        {{#if checked }} checked {{/if}}
-                    >
-                    {{#if ../saved }}
-                        {{#if correct}}
-                            <span class="correct">&#10004;</span>
-                        {{/if}}
-                    {{/if}}
-                    {{ title }}
-                </label>
-            </div>
-        </div>
-    {{/each }}
+        <form id="questionForm">
 
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+            {{#each question.answers}}
+                <div>
+                    <div class="checkbox">
+                        <label>
+                            <input
+                                    type="checkbox"
+                                    name="correct"
+                                {{#if checked }} checked {{/if}}
+                            >
+                            {{#if ../saved }}
+                                {{#if correct}}
+                                    <span class="correct">&#10004;</span>
+                                {{/if}}
+                            {{/if}}
+                            {{ title }}
+                        </label>
+                    </div>
+                </div>
+            {{/each }}
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+
+    </div>
+</div>

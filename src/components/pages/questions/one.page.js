@@ -12,16 +12,20 @@ class OneQuestionPage extends Page {
 
         const quiz = this.getCurrentQuiz();
         const quizQuestion = quiz.questions[id];
+
         if (quizQuestion.submit) {
             throw new Error('Question is already answered');
         }
 
         const question = db.find('questions', quizQuestion['qid']);
+        const total = Object.keys(quiz.questions).length;
 
         this.checked = {};
         this.question = question;
         this.content = template;
         this.data = {
+            id,
+            total,
             question,
             studentEmail: quiz.email,
             saved: false,
