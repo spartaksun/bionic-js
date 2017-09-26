@@ -1,20 +1,31 @@
-<h1>Questions</h1>
-
-<ul class="questions-list">
+<h2>Questions</h2>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Question</th>
+        <th>Answers</th>
+        <th>Created</th>
+    </tr>
+    </thead>
+    <tbody>
     {{#each questions}}
-        <li title="{{ id }}">{{ title }}</li>
-        <ol type="a">
+        <tr>
+            <td>{{ title }}</td>
+            <td>
+                <ul type="a">
 
-            {{#each answers}}
-                <li>
-                    {{ title }}
-                    {{#if correct}}
-                        <span class="correct">&#10004;</span>
-                    {{/if}}
-                </li>
-            {{/each}}
-
-        </ol>
+                    {{#each answers}}
+                        <li>
+                            {{ title }}
+                            {{#if correct}}
+                                <span class="correct">&#10004;</span>
+                            {{/if}}
+                        </li>
+                    {{/each}}
+                </ul>
+            </td>
+            <td>{{ created }}</td>
+        </tr>
     {{/each}}
-
-</ul>
+    </tbody>
+</table>

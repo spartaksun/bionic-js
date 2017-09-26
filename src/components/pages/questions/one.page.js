@@ -25,6 +25,7 @@ class OneQuestionPage extends Page {
             id,
             total,
             question,
+            progress: Math.floor(id / total * 100),
             studentEmail: quiz.email,
             saved: false,
             checked: {},
@@ -66,7 +67,7 @@ class OneQuestionPage extends Page {
             return router.generateUrl('#/question', {id: nextId});
         } else {
             message.info('You have been successfully finished a quiz!');
-            return router.generateUrl('#/');
+            return router.generateUrl('#/result', {id: quiz.id});
         }
     }
 
@@ -83,9 +84,11 @@ class OneQuestionPage extends Page {
                 const {answers} = self.question;
                 const {id} = self.papameters;
 
+                const correctAnswers = correct[0] ? correct : [correct];
+
                 if (!self.quizQuestion.submit) {
                     for (let i = 0; i < answers.length; i++) {
-                        const checked = correct[i].checked;
+                        const checked = correctAnswers[i].checked;
 
                         self.data.question.answers[i].checked = checked;
                         self.correct = self.correct

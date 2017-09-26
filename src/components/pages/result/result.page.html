@@ -1,0 +1,28 @@
+<h2>
+    Quiz result: {{ email }}
+
+    {{#if success}}
+        <span class="badge badge-success">Passed</span>
+    {{else}}
+        <span class="badge badge-danger">Failed</span>
+    {{/if}}
+</h2>
+
+<h4>Correct {{ correct }} of {{ total }} ({{ percent }}%)</h4>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Question</th>
+        <th>Result</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each questionList}}
+        <tr>
+            <td>{{ title }}</td>
+            <td>{{#if success}}Correct{{else}}Incorrect{{/if}}</td>
+        </tr>
+    {{/each}}
+    </tbody>
+</table>

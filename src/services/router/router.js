@@ -9,6 +9,8 @@ import questionListPage from 'components/pages/questions/list.page';
 import addQuestionPage from 'components/pages/questions/add.page';
 import startQuizPage from 'components/pages/questions/start.page';
 import oneQuestionPage from 'components/pages/questions/one.page';
+import quizAllResultPage from 'components/pages/answers/list.page';
+import quizResultPage from 'components/pages/result';
 
 import auth from 'services/auth';
 
@@ -20,6 +22,8 @@ const pages = [
     addQuestionPage,
     startQuizPage,
     oneQuestionPage,
+    quizResultPage,
+    quizAllResultPage,
 ];
 
 class Router {
@@ -49,6 +53,10 @@ class Router {
         }
 
         return result;
+    }
+
+    go(baseUrl, params) {
+        this.goToUrl(this.generateUrl(baseUrl, params));
     }
 
     generateUrl(baseUrl, params) {

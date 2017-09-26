@@ -20,6 +20,10 @@ export default [
         route: '#/admin/questions/add',
     },
     {
+        title: 'Results',
+        route: '#/admin/quizzes',
+    },
+    {
         title: 'Login',
         route: '#/login',
     },

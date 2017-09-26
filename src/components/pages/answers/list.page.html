@@ -1,0 +1,21 @@
+<h2>Results</h2>
+<table class="table" id="quizResults">
+    <thead>
+    <tr>
+        <th>Start</th>
+        <th>Email</th>
+        <th>Correct</th>
+        <th>Public page</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each quizzes}}
+        <tr>
+            <td>{{ start }}</td>
+            <td>{{ email }} </td>
+            <td>{{ percent }}% ({{ correct }} of {{ total }})</td>
+            <td><a id="{{ id }}" href="#">{{ id }}</a></td>
+        </tr>
+    {{/each}}
+    </tbody>
+</table>

@@ -4,6 +4,10 @@
     "access": "all"
   },
   {
+    "route": "#/result",
+    "access": "all"
+  },
+  {
     "route": "#/about",
     "access": [
       "unauthorized",
@@ -32,6 +36,12 @@
   },
   {
     "route": "#/admin/questions",
+    "access": [
+      "admin"
+    ]
+  },
+  {
+    "route": "#/admin/quizzes",
     "access": [
       "admin"
     ]

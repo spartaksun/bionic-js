@@ -14,7 +14,7 @@ class AddQuestionPage extends Page {
 
         this.content = template;
         this.data = {
-            questions: [1, 2, 3, 4,]
+            questions: [0, 1, 2, 3, 4, 5]
         }
     }
 
