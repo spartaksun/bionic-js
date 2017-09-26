@@ -12,10 +12,6 @@ export default [
         route: '#/about',
     },
     {
-        title: 'Admin',
-        route: '#/admin',
-    },
-    {
         title: 'Questions',
         route: '#/admin/questions',
     },

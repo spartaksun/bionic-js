@@ -5,7 +5,6 @@ import {find} from 'lodash';
 import homePage from 'components/pages/home/home.page';
 import aboutPage from 'components/pages/about/about.page';
 import loginPage from 'components/pages/login/login.page';
-import adminPage from 'components/pages/admin/admin.page';
 import questionListPage from 'components/pages/questions/list.page';
 import addQuestionPage from 'components/pages/questions/add.page';
 import startQuizPage from 'components/pages/questions/start.page';
@@ -17,7 +16,6 @@ const pages = [
     homePage,
     aboutPage,
     loginPage,
-    adminPage,
     questionListPage,
     addQuestionPage,
     startQuizPage,
