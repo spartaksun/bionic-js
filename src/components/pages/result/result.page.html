@@ -21,7 +21,13 @@
     {{#each questionList}}
         <tr>
             <td>{{ title }}</td>
-            <td>{{#if success}}Correct{{else}}Incorrect{{/if}}</td>
+            <td>
+                {{#if success}}
+                    <span class="badge badge-pill badge-success">Correct</span>
+                {{else}}
+                    <span class="badge badge-pill badge-danger">Incorrect</span>
+                {{/if}}
+            </td>
         </tr>
     {{/each}}
     </tbody>

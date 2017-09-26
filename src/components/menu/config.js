@@ -4,7 +4,7 @@ export default [
         route: '#/',
     },
     {
-        title: 'Start quiz',
+        title: 'Start',
         route: '#/start',
     },
     {

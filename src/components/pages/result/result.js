@@ -9,7 +9,13 @@ class QuizResult extends Page {
 
     beforeRender() {
         const questionList = [];
-        const {email, questions} = db.find('quizzes', this.papameters.id);
+        const quiz = db.find('quizzes', this.papameters.id);
+
+        if(!quiz) {
+            throw new Error(`Quiz ${this.papameters.id} not found`);
+        }
+
+        const {email, questions} = quiz;
 
         let total = 0;
         let correct = 0;

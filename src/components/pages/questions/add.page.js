@@ -2,6 +2,7 @@
 
 import db from 'services/db';
 import router from 'services/router';
+import message from 'services/message';
 
 import Page from '../page';
 import template from './add.page.html';
@@ -19,41 +20,65 @@ class AddQuestionPage extends Page {
     }
 
     afterRender() {
+        const handleSubmit = this.handleSubmit;
         document.getElementById('addQuestionForm')
-            .addEventListener('submit', (e) => {
-                e.preventDefault();
-
-                const {question, answers, correct} = e.target;
-                const resultAnswers = [];
-
-                if (question.value.length < MIN_LENGTH) {
-                    return;
-                }
-
-                for (let i = 0; i < answers.length; i++) {
-                    const answer = answers[i];
-                    const title = answer.value.toString();
-
-                    if (title.length > 0) {
-                        resultAnswers.push({
-                            title,
-                            correct: correct[i].checked
-                        })
-                    }
-                }
-
-                if (resultAnswers.length > 0) {
-                    db.add('questions', {
-                        title: question.value,
-                        answers: resultAnswers
-                    });
-
-                    db.persist();
-
-                    router.goToUrl('#/admin/questions')
-                }
-            });
+            .addEventListener('submit', handleSubmit);
     }
+
+    handleSubmit(e) {
+        e.preventDefault();
+
+        const {question, answers, correct} = e.target;
+        const resultAnswers = [];
+
+        if (question.value.length < MIN_LENGTH) {
+            message.error('Question title is too short.');
+
+            return;
+        }
+
+        let count = 0;
+        let countCorrect = 0;
+        for (let i = 0; i < answers.length; i++) {
+            const answer = answers[i];
+            const title = answer.value.toString();
+
+            if (title.length > 0) {
+                const {checked} = correct[i]
+
+                count ++;
+                resultAnswers.push({
+                    title,
+                    correct: checked
+                });
+
+                if(checked) {
+                    countCorrect++;
+                }
+            }
+        }
+
+        if (count < 2 ) {
+            message.error('Please type at least two answers.');
+
+            return;
+        }
+
+        if(countCorrect === 0) {
+            message.error('Please mark as correct at least one answer.');
+
+            return;
+        }
+
+        db.add('questions', {
+            title: question.value,
+            answers: resultAnswers
+        });
+        db.persist();
+
+        router.goToUrl('#/admin/questions')
+    }
+
 }
 
 export default new AddQuestionPage('#/admin/questions/add');
