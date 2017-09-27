@@ -29,7 +29,17 @@ const pages = [
 class Router {
 
     init() {
-        this.renderPage(window.location.hash)
+        this.renderPage(window.location.hash);
+        window.addEventListener("hashchange", (e) => {
+            const splitted = e.newURL.split('#');
+            let url;
+            if(splitted.length === 1) {
+                url = '#'+ splitted[0];
+            } else {
+                url = '#'+ splitted[1];
+            }
+            this.renderPage(url)
+        }, false);
     }
 
     handleChangeRoute() {
@@ -97,9 +107,6 @@ class Router {
 
     goToUrl(url) {
         window.location.href = url;
-        this.renderPage(url);
-
-        this.handleChangeRoute(url);
     }
 
     goHome() {
