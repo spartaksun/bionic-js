@@ -9,6 +9,7 @@ class Page {
         this.content = content;
         this.data = {};
         this.papameters = {};
+        this.title = ''
     }
 
     setParameters(papameters) {
@@ -16,6 +17,8 @@ class Page {
     }
 
     render() {
+        document.title = this.title;
+
         this.beforeRender();
         this.doRender();
         this.afterRender();

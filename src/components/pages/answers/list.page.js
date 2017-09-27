@@ -13,11 +13,10 @@ class QuizListPage extends Page {
     constructor(url) {
         super(url);
 
+        this.title = 'Results';
         this.content = pageContent;
         this.data = {
-            quizzes: db.findAll('quizzes').sort((q1, q2) => {
-                return parseInt(q1.createdAt) < parseInt(q2.createdAt)
-            }).map(quiz => {
+            quizzes: db.findAll('quizzes', ['~createdAt']).map(quiz => {
                 let correct = 0;
                 let total = 0;
                 for(let key in quiz.questions) {

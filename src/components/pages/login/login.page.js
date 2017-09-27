@@ -8,6 +8,8 @@ class LoginPage extends Page {
 
     constructor(url) {
         super(url);
+
+        this.title = 'Login page';
         this.content = pageContent;
     }
 

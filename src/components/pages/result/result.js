@@ -35,6 +35,7 @@ class QuizResult extends Page {
             total++;
         }
 
+        this.title = `Result for ${email}`;
         this.content = content;
         this.data = {
             email,

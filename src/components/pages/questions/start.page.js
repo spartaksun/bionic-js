@@ -11,6 +11,12 @@ import template from './start.page.html';
 
 class StartQuizPage extends Page {
 
+    constructor(url) {
+        super(url);
+
+        this.title = 'Start quiz'
+    }
+
     beforeRender() {
         this.content = template;
     }

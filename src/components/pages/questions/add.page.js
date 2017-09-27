@@ -13,6 +13,7 @@ class AddQuestionPage extends Page {
     constructor(url) {
         super(url);
 
+        this.title = 'Add new question';
         this.content = template;
         this.data = {
             questions: [0, 1, 2, 3, 4, 5]

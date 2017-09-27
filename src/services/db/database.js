@@ -1,6 +1,7 @@
 'use strict';
 
 import moment from 'moment';
+import multisort from 'multisort';
 
 class Database {
 
@@ -139,28 +140,30 @@ class Database {
     /**
      * Retrieve collection of all objects from memory
      * @param collectionName
+     * @param sort
      * @returns {*}
      */
-    findAll(collectionName) {
-        return this.findAllBy(collectionName);
+    findAll(collectionName, sort = []) {
+        return this.findAllBy(collectionName, {}, sort);
     }
 
     /**
      * Find first element by primary key
      * @param collectionName
      * @param primary
+     * @param sort
      * @returns {null}
      */
-    find(collectionName, primary) {
+    find(collectionName, primary, sort = []) {
         const result = this.findAllBy(collectionName, {
             [this.getPrimaryKey(collectionName)]: primary
-        });
+        }, sort, false);
 
         return result.length > 0 ? result[0] : null;
     }
 
     findOneBy(collectionName, criteria) {
-        const found = this.findAllBy(collectionName, criteria, true);
+        const found = this.findAllBy(collectionName, criteria, {}, true);
 
         if (found.length === 1) {
             return found[0];
@@ -172,9 +175,10 @@ class Database {
      * @param collectionName
      * @param criteria object
      * @param stopOnFirst
+     * @param sort
      * @returns []
      */
-    findAllBy(collectionName, criteria, stopOnFirst = false) {
+    findAllBy(collectionName, criteria, sort, stopOnFirst = false) {
         this.validateCollection(collectionName);
 
         if (typeof criteria === 'undefined') {
@@ -203,7 +207,7 @@ class Database {
                 }
             }
 
-            return result;
+            return multisort(result, sort);
         }
 
         return [];

@@ -16,6 +16,7 @@ class OneQuestionPage extends Page {
         const question = db.find('questions', quiz.questions[id]['qid']);
         const total = Object.keys(quiz.questions).length;
 
+        this.title = `Question ${id}. Quiz ${quiz.id}`;
         this.checked = {};
         this.question = question;
         this.content = template;

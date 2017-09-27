@@ -1,6 +1,7 @@
 'use strict';
 
 import {find} from 'lodash';
+import Handlebars from 'handlebars';
 
 import homePage from 'components/pages/home/home.page';
 import aboutPage from 'components/pages/about/about.page';
@@ -32,13 +33,7 @@ class Router {
         this.renderPage(window.location.hash);
         window.addEventListener("hashchange", (e) => {
             const splitted = e.newURL.split('#');
-            let url;
-            if(splitted.length === 1) {
-                url = '#'+ splitted[0];
-            } else {
-                url = '#'+ splitted[1];
-            }
-            this.renderPage(url)
+            this.renderPage('#'+ splitted[1])
         }, false);
     }
 

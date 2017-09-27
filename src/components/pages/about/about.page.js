@@ -8,6 +8,7 @@ class AboutPage extends Page {
     constructor(url) {
         super(url);
         this.content = aboutPageContent;
+        this.title = 'About Us'
     }
 }
 

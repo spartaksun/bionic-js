@@ -9,6 +9,7 @@ class HomePage extends Page {
     constructor(url) {
         super(url);
 
+        this.title = 'Home';
         this.content = homePageContent;
     }
 }
