@@ -178,7 +178,7 @@ class Database {
      * @param sort
      * @returns []
      */
-    findAllBy(collectionName, criteria, sort, stopOnFirst = false) {
+    findAllBy(collectionName, criteria, sort = [], stopOnFirst = false) {
         this.validateCollection(collectionName);
 
         if (typeof criteria === 'undefined') {
